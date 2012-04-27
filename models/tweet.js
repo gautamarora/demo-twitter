@@ -1,14 +1,14 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema
-  , ObjectId = Schema.ObjectId;
+var mongoose          = require('mongoose')
+  , Schema            = mongoose.Schema
+  , ObjectId          = mongoose.SchemaTypes.ObjectId;
 
-var Tweet = new Schema({
+var TweetSchema = new Schema({
     text: { type: String, required: true }
-  , author: { type: ObjectId, required: true }
+  , user : { ref: 'User', type: Schema.ObjectId, required: true }
+  , mentions: [{ ref:'Mention', type: ObjectId}]
+  , retweets: [{ ref:'Retweet', type: ObjectId}]
   , date: { type: Date, default: Date.now }
-  , replies: [Tweet]
-  , retweets: [Tweet]
 });
 
 
-module.exports = mongoose.model('Tweet', Tweet);
+module.exports = mongoose.model('Tweet', TweetSchema);

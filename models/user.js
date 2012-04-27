@@ -1,16 +1,13 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema
-  , ObjectId = Schema.ObjectId;
+var mongoose          = require('mongoose')
+  , Schema            = mongoose.Schema
+  , ObjectId          = mongoose.SchemaTypes.ObjectId;
 
-var Tweet = require('../models/tweet.js');
-
-var User = new Schema({
+var UserSchema = new Schema({
     username: { type: String, required: true }
   , password: String
   , firstname: String
   , lastname: String
-  , location: String
-  , followers: [ObjectId]
+  , followers: [{ ref:'User', type: ObjectId}]
 });
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('User', UserSchema);

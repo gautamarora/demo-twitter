@@ -1,0 +1,14 @@
+h1= title
+table
+  thead
+    tr
+      th Tweeter
+      th Tweet
+  tbody
+    //- - tweets.forEach(function(tweet){
+    //-       tr
+    //-         td= tweet.user.username
+    //-         td= tweet.text
+    //- - })
+    
+    != partial('_tweets_tr', { collection: tweets, as: 'tweet' });
